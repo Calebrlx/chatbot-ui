@@ -9,7 +9,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 export const PaymentStep = () => {
   const [loading, setLoading] = useState(false);
 
-  const handleSubscribe = async (priceId) => {
+  const handleSubscribe = async (priceId: string) => {
     setLoading(true);
     const stripe = await stripePromise;
     const response = await fetch('/api/create-checkout-session', {
