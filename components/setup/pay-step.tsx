@@ -1,4 +1,4 @@
-// components/setup/PaymentStep.js
+// components/setup/PaymentStep.tsx
 'use client';
 
 import { useState } from 'react';
@@ -6,12 +6,19 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
-export const PaymentStep = () => {
+export const PaymentStep: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubscribe = async (priceId: string) => {
     setLoading(true);
     const stripe = await stripePromise;
+
+    if (!stripe) {
+      console.error('Stripe failed to load');
+      setLoading(false);
+      return;
+    }
+
     const response = await fetch('/api/create-checkout-session', {
       method: 'POST',
       headers: {
