@@ -4,7 +4,7 @@ import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function POST(request) {
+export async function POST(request: Request) {
   const { priceId } = await request.json();
 
   const session = await stripe.checkout.sessions.create({
