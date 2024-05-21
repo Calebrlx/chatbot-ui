@@ -14,13 +14,15 @@ import { supabase } from "@/lib/supabase/browser-client"
 import { TablesUpdate } from "@/supabase/types"
 import { useRouter } from "next/navigation"
 import { useContext, useEffect, useState } from "react"
-import { APIStep } from "../../../components/setup/api-step"
+// import { APIStep } from "../../../components/setup/api-step"
+import { PaymentStep } from "../../../components/setup/pay-step"
 import { FinishStep } from "../../../components/setup/finish-step"
 import { ProfileStep } from "../../../components/setup/profile-step"
 import {
   SETUP_STEP_COUNT,
   StepContainer
 } from "../../../components/setup/step-container"
+
 
 export default function SetupPage() {
   const {
@@ -34,9 +36,7 @@ export default function SetupPage() {
   } = useContext(ChatbotUIContext)
 
   const router = useRouter()
-
   const [loading, setLoading] = useState(true)
-
   const [currentStep, setCurrentStep] = useState(1)
 
   // Profile Step
@@ -60,6 +60,9 @@ export default function SetupPage() {
   const [groqAPIKey, setGroqAPIKey] = useState("")
   const [perplexityAPIKey, setPerplexityAPIKey] = useState("")
   const [openrouterAPIKey, setOpenrouterAPIKey] = useState("")
+
+
+  
 
   useEffect(() => {
     ;(async () => {
@@ -179,20 +182,20 @@ export default function SetupPage() {
           </StepContainer>
         )
 
-      // API Step
+      // Payment step
       case 2:
         return (
-          <StepContainer
-            stepDescription="You are all set up!"
-            stepNum={currentStep}
-            stepTitle="Setup Complete"
-            onShouldProceed={handleShouldProceed}
-            showNextButton={true}
-            showBackButton={true}
-          >
-            <FinishStep displayName={displayName} />
-          </StepContainer>
-        )
+        <StepContainer
+        stepDescription="Select a subscription plan."
+        stepNum={currentStep}
+        stepTitle="Choose Your Plan"  // "Subscription"
+        onShouldProceed={handleShouldProceed}
+        showNextButton={false}
+        showBackButton={true}
+        >
+          <PaymentStep />
+        </StepContainer>
+      )
           
         //   <StepContainer
         //     stepDescription="Enter API keys for each service you'd like to use."
@@ -238,19 +241,19 @@ export default function SetupPage() {
         // )
 
       // Finish Step
-      // case 3:
-      //   return (
-      //     <StepContainer
-      //       stepDescription="You are all set up!"
-      //       stepNum={currentStep}
-      //       stepTitle="Setup Complete"
-      //       onShouldProceed={handleShouldProceed}
-      //       showNextButton={true}
-      //       showBackButton={true}
-      //     >
-      //       <FinishStep displayName={displayName} />
-      //     </StepContainer>
-      //   )
+      case 3:
+        return (
+          <StepContainer
+            stepDescription="You are all set up!"
+            stepNum={currentStep}
+            stepTitle="Setup Complete"
+            onShouldProceed={handleShouldProceed}
+            showNextButton={true}
+            showBackButton={true}
+          >
+            <FinishStep displayName={displayName} />
+          </StepContainer>
+        )
       default:
         return null
     }
