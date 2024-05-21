@@ -41,10 +41,10 @@ export const PaymentStep: React.FC = () => {
   return (
     <div>
       <h2>Select a Subscription Plan</h2>
-      <button onClick={() => handleSubscribe('price_1Hh1YgLz0cGf1J2e9xqVTr2w')} disabled={loading}>
+      <button onClick={() => handleSubscribe('price_1O5xVoHFaRhHh6S8QWyJva48')} disabled={loading}>
         Subscribe to Basic Plan
       </button>
-      <button onClick={() => handleSubscribe('price_1Hh1YgLz0cGf1J2e9xqVTr3x')} disabled={loading}>
+      <button onClick={() => handleSubscribe('price_1O5xWiHFaRhHh6S80ecqo3Wq')} disabled={loading}>
         Subscribe to Pro Plan
       </button>
       {loading && <p>Loading...</p>}
