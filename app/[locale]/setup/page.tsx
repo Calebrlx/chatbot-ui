@@ -23,7 +23,6 @@ import {
   StepContainer
 } from "../../../components/setup/step-container"
 
-
 export default function SetupPage() {
   const {
     profile,

@@ -6,7 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-const PaymentStep = () => {
+export const PaymentStep = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubscribe = async (priceId) => {
