@@ -61,8 +61,6 @@ export default function SetupPage() {
   const [openrouterAPIKey, setOpenrouterAPIKey] = useState("")
 
 
-  
-
   useEffect(() => {
     ;(async () => {
       const session = (await supabase.auth.getSession()).data.session
